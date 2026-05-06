@@ -5,6 +5,7 @@ public class Connect_4
     static boolean play = true, dne = true;
 //                 play = true => player 1  => X 
 //                 play = false => player 2 => O
+    static int x, y;
     
     static String[][] grd = {{"[ ]","[ ]","[ ]","[ ]","[ ]","[ ]","[ ]"},
                              {"[ ]","[ ]","[ ]","[ ]","[ ]","[ ]","[ ]"},
@@ -34,14 +35,15 @@ public class Connect_4
                 continue;
             }
 
-            enter(inc.charAt(0));
+            x = inc.charAt(0) - 65;
+            enter();
             display();
 
         }
     }
-    public static void enter(char coor)
+    public static void enter()
     {
-        int x = (coor - 65), l;
+        int l;
         for(l = 0 ; l < 6; l++)
         {
             if(grd[l][x].equals("[X]") || grd[l][x].equals("[O]"))
@@ -49,9 +51,10 @@ public class Connect_4
         }
         System.out.println(l + " " + x);
         if(l == 0)
-            System.out.println("No space left in column " + coor);
+            System.out.println("No space left in column " + x);
         else
             grd[l - 1][x] = (play)?"[X]":"[O]";
+        y = l - 1;
         play = !play;
     }
     
@@ -79,12 +82,19 @@ public class Connect_4
     public static void check()
     {
         String pl = (!play)?"[X]":"[O]";
-        int ch;
+        int ch, i, j;
         for(ch = 1 ; ch <= 7 ; ch++)
         {
             switch(ch)
             {
                 case 1 :
+                    for(i = 0 ; i < 7 ; i++)
+                    {
+                        for(j = 0 ; j < 6 ; j++)
+                        {
+
+                        }
+                    }
                     
 
                 case 2 :
