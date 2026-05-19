@@ -74,55 +74,78 @@ public class Connect_4
         }
     }
 /*  ch ---> check:
-    1. Bottom Right         5. Top Left
+    1. Top Right            5. Bottom Left
     2. Right                6. Left
-    3. Top Right            7. Bottom Left
-    4. Top
+    3. Bottom Right         7. Bottom Left
+    4. Bottom
 
 */
 
     public static void check()
     {
         String pl = (!play)?"[X]":"[O]";
-        int ch, i, j, chn;
-        boolean win = true;
-        for(ch = 1 ; ch <= 7 ; ch++)
+        int ch, i, xc, yc;
+        for(ch = 1 ; ch <= 7 && !dne; ch++)
         {
+            xc = x;
+            yc = y;
             switch(ch)
             {
                 case 1 :
-                    chn = x - y;
-                    out_loop:
-                    for(i = 0 ; i < 7 ; i++)
+                    for(i = 1 ; i <= 4 && !dne ; i++, xc--, yc--)
                     {
-                        for(j = 0 ; j < 6 ; j++)
-                        {
-                            if(i - j == chn && grd[i][j].equals(pl))
-                            {
-                                win = false;
-                                break out_loop;
-                            }
-                        }
+                        if(grd[yc][xc].equals(pl))
+                            dne = false;
                     }
-                    
+                    break;
 
                 case 2 :
-
+                    for(i = 1 ; i <= 4 && !dne ; i++)
+                    {
+                        if(grd[yc][xc].equals(pl))
+                            dne = false;
+                    }
+                    break;
 
                 case 3 :
-
+                    for(i = 1 ; i <= 4 && !dne; i++, xc++, yc++)
+                    {
+                        if(grd[yc][xc].equals(pl))
+                            dne = false;
+                    }
+                    break;
 
                 case 4 :
-
+                    for(i = 1 ; i <= 4 && !dne ; i++)
+                    {
+                        if(grd[yc][xc].equals(pl))
+                            dne = false;
+                    }
+                    break;
 
                 case 5 :
-
+                    for(i = 1 ; i <= 4 && !dne ; i++)
+                    {
+                        if(grd[yc][xc].equals(pl))
+                            dne = false;
+                    }
+                    break;
 
                 case 6 :
-
+                    for(i = 1 ; i <= 4 && !dne ; i++)
+                    {
+                        if(grd[yc][xc].equals(pl))
+                            dne = false;
+                    }
+                    break;
 
                 case 7 :
-
+                    for(i = 1 ; i <= 4 && !dne ; i++)
+                    {
+                        if(grd[yc][xc].equals(pl))
+                            dne = false;
+                    }
+                    break;
 
             }
         }
