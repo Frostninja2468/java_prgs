@@ -2,7 +2,7 @@ import java.util.*;
 public class Connect_4
 {
     static final Scanner s = new Scanner(System.in);
-    static boolean play = true, dne = true;
+    static boolean play = true, dne = false;
 //                 play = true => player 1  => X 
 //                 play = false => player 2 => O
     static int x, y;
@@ -23,7 +23,7 @@ public class Connect_4
         String inc;
 
         display();
-        for( ; dne ; )
+        for( ; !dne ; )
         {
             inc = s.next().toUpperCase();
             if(inc.charAt(0) == '0' )
@@ -38,7 +38,7 @@ public class Connect_4
             x = inc.charAt(0) - 65;
             enter();
             display();
-
+            check();
         }
     }
     public static void enter()
@@ -49,7 +49,7 @@ public class Connect_4
             if(grd[l][x].equals("[X]") || grd[l][x].equals("[O]"))
                 break;
         }
-        System.out.println(l + " " + x);
+        System.out.println(x + " " + l);
         if(l == 0)
             System.out.println("No space left in column " + (char)(x + 65));
         else
@@ -87,64 +87,87 @@ public class Connect_4
         int ch, i, xc, yc;
         for(ch = 1 ; ch <= 7 && !dne; ch++)
         {
+            dne = true;
             xc = x;
             yc = y;
+            System.out.println(xc + " " + yc);
             switch(ch)
             {
                 case 1 :
-                    for(i = 1 ; i <= 4 && !dne ; i++, xc--, yc--)
+                    for(i = 1 ; i <= 4 && xc >= 0 && yc >= 0 && !dne ; i++, xc--, yc--)
                     {
                         if(grd[yc][xc].equals(pl))
                             dne = false;
                     }
+                    if(xc >= 0 || yc >= 0)
+                        dne = !dne;
+                    System.out.println(dne + " " + ch);
                     break;
 
                 case 2 :
-                    for(i = 1 ; i <= 4 && !dne ; i++)
+                    for(i = 1 ; i <= 4 && xc < 7 && !dne ; i++, xc++)
                     {
                         if(grd[yc][xc].equals(pl))
                             dne = false;
                     }
+                    if(xc < 7)
+                        dne = !dne;
+                    System.out.println(dne + " " + ch);
                     break;
 
                 case 3 :
-                    for(i = 1 ; i <= 4 && !dne; i++, xc++, yc++)
+                    for(i = 1 ; i <= 4 && xc < 7 && yc < 6 &&!dne; i++, xc++, yc++)
                     {
                         if(grd[yc][xc].equals(pl))
                             dne = false;
                     }
+                    if()
+                        dne = !dne;
+                    System.out.println(dne + " " + ch);
                     break;
 
                 case 4 :
-                    for(i = 1 ; i <= 4 && !dne ; i++)
+                    for(i = 1 ; i <= 4 && yc < 6 && !dne ; i++, yc++)
                     {
                         if(grd[yc][xc].equals(pl))
                             dne = false;
                     }
+                    if()
+                        dne = !dne;
+                    System.out.println(dne + " " + ch);
                     break;
 
                 case 5 :
-                    for(i = 1 ; i <= 4 && !dne ; i++)
+                    for(i = 1 ; i <= 4 && xc >= 0 && yc < 6 && !dne ; i++, xc--, yc++)
                     {
                         if(grd[yc][xc].equals(pl))
                             dne = false;
                     }
+                    if()
+                        dne = !dne;
+                    System.out.println(dne + " " + ch);
                     break;
 
                 case 6 :
-                    for(i = 1 ; i <= 4 && !dne ; i++)
+                    for(i = 1 ; i <= 4 && xc >= 0 && !dne ; i++, xc--)
                     {
                         if(grd[yc][xc].equals(pl))
                             dne = false;
                     }
+                    if()
+                        dne = !dne;
+                    System.out.println(dne + " " + ch);
                     break;
 
                 case 7 :
-                    for(i = 1 ; i <= 4 && !dne ; i++)
+                    for(i = 1 ; i <= 4 && xc < 7 && yc >= 0 && !dne ; i++, xc++, yc--)
                     {
                         if(grd[yc][xc].equals(pl))
                             dne = false;
                     }
+                    if()
+                        dne = !dne;
+                    System.out.println(dne + " " + ch);
                     break;
 
             }
