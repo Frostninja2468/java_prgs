@@ -64,13 +64,13 @@ public class Connect_4
     public static void display()
     {
         int i, j;
-        System.out.println(" 0   1   2   3   4   5   6");
+        System.out.println(" A   B   C   D   E   F   G");
         System.out.println("---------------------------");
         for(i = 0 ; i < 6 ; i++)
         {
             for(j = 0 ; j < 7 ; j++)
                 System.out.print(grd[i][j] + " ");
-            System.out.println(i);
+            System.out.println(i + 1);
             System.out.println("---------------------------");
         }
     }
@@ -85,7 +85,7 @@ public class Connect_4
 
     public static boolean check()
     {
-        String pl = (play)?"[X]":"[O]";
+        String pl = (!play)?"[X]":"[O]";
         int ch, i, xc, yc;
         boolean dne = false;
         for(ch = 1 ; ch <= 7 && !dne; ch++)
@@ -96,75 +96,101 @@ public class Connect_4
             switch(ch)
             {
                 case 1 :
-                    for(i = 1 ; i <= 4 && xc < 7 && yc >= 0 && !dne ; i++, xc++, yc--)
+                    for(i = 1, dne = true ; i <= 4 && xc < 7 && yc >= 0 && dne ; i++, xc++, yc--)
                     {
                         dne = false;
-                        if(grd[yc][xc].equals(pl) && i != 1)
+                        if(grd[yc][xc].equals(pl))
                             dne = true;
                         System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
                     }
+
+                    if(!(xc < 7 && yc >= 0))
+                        dne = false;
+                    System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + i);
                     break;
 
                 case 2 :
-                    for(i = 1 ; i <= 4 && xc < 7 && !dne ; i++, xc++)
+                    for(i = 1, dne = true ; i <= 4 && xc < 7 && dne ; i++, xc++)
                     {
                         dne = false;
-                        if(grd[yc][xc].equals(pl) && i != 1)
+                        if(grd[yc][xc].equals(pl))
                             dne = true;
                         System.out.println(dne + " " + ch + " " + xc + "   " + grd[yc][xc] + " " + pl);
                     }
+
+                    if(!(xc < 7))
+                        dne = false;
+                    System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + i);
                     break;
 
                 case 3 :
-                    for(i = 1 ; i <= 4 && xc < 7 && yc < 6 && !dne; i++, xc++, yc++)
+                    for(i = 1, dne = true ; i <= 4 && xc < 7 && yc < 6 && dne; i++, xc++, yc++)
                     {
                         dne = false;
-                        if(grd[yc][xc].equals(pl) && i != 1)
+                        if(grd[yc][xc].equals(pl))
                             dne = true;
                         System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
                     }
+
+                    if(!(xc < 7 && yc < 6))
+                        dne = false;
                     System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + i);
                     break;
 
                 case 4 :
-                    for(i = 1 ; i <= 4 && yc < 6 && !dne ; i++, yc++)
+                    for(i = 1, dne = true ; i <= 4 && yc < 6 && dne ; i++, yc++)
                     {
                         dne = false;
-                        if(grd[yc][xc].equals(pl) && i != 1)
+                        if(grd[yc][xc].equals(pl))
                             dne = true;
                         System.out.println(dne + " " + ch + "   " + yc + " " + grd[yc][xc] + " " + pl);
                     }
-                    System.out.println(dne + " " + ch + " " + yc);
+
+                    if(!(yc < 6))
+                        dne = false;
+                    System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + i);
                     break;
 
                 case 5 :
-                    for(i = 1 ; i <= 4 && xc >= 0 && yc < 6 && !dne ; i++, xc--, yc++)
+                    for(i = 1, dne = true ; i <= 4 && xc >= 0 && yc < 6 && dne ; i++, xc--, yc++)
                     {
                         dne = false;
-                        if(grd[yc][xc].equals(pl) && i != 1)
+                        if(grd[yc][xc].equals(pl))
                             dne = true;
                         System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
                     }
+
+                    if(!(xc >= 0 && yc < 6))
+                        dne = false;
+                    System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + i);
                     break;
 
                 case 6 :
-                    for(i = 1 ; i <= 4 && xc >= 0 && !dne ; i++, xc--)
+                    for(i = 1, dne = true ; i <= 4 && xc >= 0 && dne ; i++, xc--)
                     {
                         dne = false;
-                        if(grd[yc][xc].equals(pl) && i != 1)
+                        if(grd[yc][xc].equals(pl))
                             dne = true;
                         System.out.println(dne + " " + ch + " " + xc + "   " + grd[yc][xc] + " " + pl);
                     }
+
+                    if(!(xc >= 0))
+                        dne = false;
+                    System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + i);
                     break;
 
                 case 7 :
-                    for(i = 1 ; i <= 4 && xc >= 0 && yc >= 0 && !dne ; i++, xc--, yc--)
+                    for(i = 1, dne = true ; i <= 4 && xc >= 0 && yc >= 0 && dne ; i++, xc--, yc--)
                     {
                         dne = false;
-                        if(grd[yc][xc].equals(pl) && i != 1)
+                        if(grd[yc][xc].equals(pl))
                             dne = true;
                         System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
                     }
+
+                    if(!(xc >= 0 && yc >= 0))
+                        dne = false;
+                    System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + i);
                     break;
 
             }
