@@ -113,7 +113,6 @@ class Number_Position
             wi5 = 2;
             won = 0;
         }
-        System.out.println("Random" + rd);
 
         boolean is_duplicate;
         for(int i = 0 ; i<no_len ; i++)
