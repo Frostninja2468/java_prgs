@@ -107,7 +107,7 @@ public class Connect_4
     {
         String pl = (!play)?"[X]":"[O]";
         String tra[] = new String[4];
-        int ch, i, xc, yc, len;
+        int rch = 0, ch, i, xc, yc, len;
 
         for(i = 0 ; i < 4 ; i++)
             che[i] = pl;
@@ -179,15 +179,135 @@ public class Connect_4
 
             }
 
+            if(ch < 4)
+                rch = ch + 4;
+            else if(ch > 4)
+                rch = ch - 4;
+
             len = length(tra);
+
             if(len == 4)
+            {
+                switch(ch)
+                {
+                    case 1:
+                        xc--;
+                        yc++;
+                        break;
+
+                    case 2:
+                        xc--;
+                        break;
+
+                    case 3:
+                        xc--;
+                        yc--;
+                        break;
+
+                    case 4:
+                        yc--;
+                        break;
+
+                    case 5:
+                        xc++;
+                        yc--;
+                        break;
+
+                    case 6:
+                        xc++;
+                        break;
+
+                    case 7:
+                        xc++;
+                        yc++;
+                        break;
+
+                }
+            }
+            if(len == 4 && ch != 4)
+                dne = recheck(rch, xc, yc);
+            else if(ch == 4)
                 dne = Arrays.equals(che, tra);
             else
                 dne = false;
+
             System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + i + " " + len);
             System.out.println("Tra = " + Arrays.toString(tra));
             System.out.println("Che = " + Arrays.toString(che) + "\n");
         }
         return dne;
+    }
+
+    public static boolean recheck(int ch, int xc, int yc)
+    {
+        String pl = (!play)?"[X]":"[O]";
+        String tra[] = new String[4];
+
+        int i;
+        switch(ch)
+        {
+            case 1 :
+                for(i = 1; i <= 4 && xc < 7 && yc >= 0; i++, xc++, yc--)
+                {
+                    tra[i - 1] = grd[yc][xc];
+                    System.out.println(ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
+                }
+                break;
+
+            case 2 :
+                for(i = 1; i <= 4 && xc < 7; i++, xc++)
+                {
+                    tra[i - 1] = grd[yc][xc];
+                    System.out.println(ch + " " + xc + "   " + grd[yc][xc] + " " + pl);
+                }
+                break;
+
+            case 3 :
+                for(i = 1; i <= 4 && xc < 7 && yc < 6; i++, xc++, yc++)
+                {
+                    tra[i - 1] = grd[yc][xc];
+                    System.out.println(ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
+                }
+                break;
+
+            case 4 :
+                for(i = 1; i <= 4 && yc < 6; i++, yc++)
+                {
+                    tra[i - 1] = grd[yc][xc];
+                    System.out.println(ch + "   " + yc + " " + grd[yc][xc] + " " + pl);
+                }
+                break;
+
+            case 5 :
+                for(i = 1; i <= 4 && xc >= 0 && yc < 6; i++, xc--, yc++)
+                {
+                    tra[i - 1] = grd[yc][xc];
+                    System.out.println(ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
+                }
+                break;
+
+            case 6 :
+                for(i = 1; i <= 4 && xc >= 0; i++, xc--)
+                {
+                    tra[i - 1] = grd[yc][xc];
+                    System.out.println(ch + " " + xc + "   " + grd[yc][xc] + " " + pl);
+                }
+                break;
+
+            case 7 :
+                for(i = 1; i <= 4 && xc >= 0 && yc >= 0; i++, xc--, yc--)
+                {
+                    tra[i - 1] = grd[yc][xc];
+                    System.out.println(ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
+                }
+                break;
+
+        }
+
+        int len = length(tra);
+        if(len == 4)
+            return Arrays.equals(che, tra);
+        else
+            return false;
     }
 }
