@@ -41,7 +41,7 @@ public class Connect_4
             win = check();
         }
         System.out.println("Congratulations, Player " + ((!play)?"1 ":"2 ") + " won the game");
-        System.out.println("out of game");
+//        System.out.println("out of game");
     }
 
     public static void enter()
@@ -87,7 +87,7 @@ public class Connect_4
         int l = 0, i;
         for(i = 0 ; i < 4 ; i++)
         {
-            if(ar[i].equals(""))
+            if(ar[i].equals("[ ]"))
                 break;
             else
                 l++;
@@ -125,7 +125,7 @@ public class Connect_4
                     for(i = 1, dne = true ; i <= 4 && xc < 7 && yc >= 0 && dne ; i++, xc++, yc--)
                     {
                         tra[i - 1] = grd[yc][xc];
-                        System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
+ //                       System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
                     }
                     break;
 
@@ -133,7 +133,7 @@ public class Connect_4
                     for(i = 1, dne = true ; i <= 4 && xc < 7 && dne ; i++, xc++)
                     {
                         tra[i - 1] = grd[yc][xc];
-                        System.out.println(dne + " " + ch + " " + xc + "   " + grd[yc][xc] + " " + pl);
+ //                       System.out.println(dne + " " + ch + " " + xc + "   " + grd[yc][xc] + " " + pl);
                     }
                     break;
 
@@ -141,7 +141,7 @@ public class Connect_4
                     for(i = 1, dne = true ; i <= 4 && xc < 7 && yc < 6 && dne; i++, xc++, yc++)
                     {
                         tra[i - 1] = grd[yc][xc];
-                        System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
+ //                       System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
                     }
                     break;
 
@@ -149,7 +149,7 @@ public class Connect_4
                     for(i = 1, dne = true ; i <= 4 && yc < 6 && dne ; i++, yc++)
                     {
                         tra[i - 1] = grd[yc][xc];
-                        System.out.println(dne + " " + ch + "   " + yc + " " + grd[yc][xc] + " " + pl);
+ //                       System.out.println(dne + " " + ch + "   " + yc + " " + grd[yc][xc] + " " + pl);
                     }
                     break;
 
@@ -157,7 +157,7 @@ public class Connect_4
                     for(i = 1, dne = true ; i <= 4 && xc >= 0 && yc < 6 && dne ; i++, xc--, yc++)
                     {
                         tra[i - 1] = grd[yc][xc];
-                        System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
+ //                       System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
                     }
                     break;
 
@@ -165,7 +165,7 @@ public class Connect_4
                     for(i = 1, dne = true ; i <= 4 && xc >= 0 && dne ; i++, xc--)
                     {
                         tra[i - 1] = grd[yc][xc];
-                        System.out.println(dne + " " + ch + " " + xc + "   " + grd[yc][xc] + " " + pl);
+ //                       System.out.println(dne + " " + ch + " " + xc + "   " + grd[yc][xc] + " " + pl);
                     }
                     break;
 
@@ -173,7 +173,7 @@ public class Connect_4
                     for(i = 1, dne = true ; i <= 4 && xc >= 0 && yc >= 0 && dne ; i++, xc--, yc--)
                     {
                         tra[i - 1] = grd[yc][xc];
-                        System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
+ //                       System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
                     }
                     break;
 
@@ -186,62 +186,60 @@ public class Connect_4
 
             len = length(tra);
 
-            if(len == 4)
+
+            switch(ch)
             {
-                switch(ch)
-                {
-                    case 1:
-                        xc--;
-                        yc++;
-                        break;
+                case 1:
+                    xc-=(5 - len);
+                    yc+=(5 - len);
+                    break;
 
-                    case 2:
-                        xc--;
-                        break;
+                case 2:
+                    xc-=(5 - len);
+                    break;
 
-                    case 3:
-                        xc--;
-                        yc--;
-                        break;
+                case 3:
+                    xc-=(5 - len);
+                    yc-=(5 - len);
+                    break;
 
-                    case 4:
-                        yc--;
-                        break;
+                case 4:
+                    yc-=(5 - len);
+                    break;
 
-                    case 5:
-                        xc++;
-                        yc--;
-                        break;
+                case 5:
+                    xc+=(5 - len);
+                    yc-=(5 - len);
+                    break;
 
-                    case 6:
-                        xc++;
-                        break;
+                case 6:
+                    xc+=(5 - len);
+                    break;
 
-                    case 7:
-                        xc++;
-                        yc++;
-                        break;
-
-                }
+                case 7:
+                    xc+=(5 - len);
+                    yc+=(5 - len);
+                    break;
             }
-            if(len == 4 && ch != 4)
+            System.out.println(len + " " + xc + " " + yc);
+            if(ch != 4)
                 dne = recheck(rch, xc, yc);
             else if(ch == 4)
                 dne = Arrays.equals(che, tra);
             else
                 dne = false;
 
-            System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + i + " " + len);
-            System.out.println("Tra = " + Arrays.toString(tra));
-            System.out.println("Che = " + Arrays.toString(che) + "\n");
+//            System.out.println(dne + " " + ch + " " + xc + " " + yc + " " + i + " " + len);
+//            System.out.println("Tra = " + Arrays.toString(tra));
+//            System.out.println("Che = " + Arrays.toString(che) + "\n");
         }
         return dne;
     }
 
     public static boolean recheck(int ch, int xc, int yc)
     {
-        String pl = (!play)?"[X]":"[O]";
-        String tra[] = new String[4];
+//        String pl = (!play)?"[X]":"[O]";
+        String tra[] = {"[ ]","[ ]","[ ]","[ ]"};
 
         int i;
         switch(ch)
@@ -250,7 +248,7 @@ public class Connect_4
                 for(i = 1; i <= 4 && xc < 7 && yc >= 0; i++, xc++, yc--)
                 {
                     tra[i - 1] = grd[yc][xc];
-                    System.out.println(ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
+//                    System.out.println(ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
                 }
                 break;
 
@@ -258,7 +256,7 @@ public class Connect_4
                 for(i = 1; i <= 4 && xc < 7; i++, xc++)
                 {
                     tra[i - 1] = grd[yc][xc];
-                    System.out.println(ch + " " + xc + "   " + grd[yc][xc] + " " + pl);
+//                    System.out.println(ch + " " + xc + "   " + grd[yc][xc] + " " + pl);
                 }
                 break;
 
@@ -266,7 +264,7 @@ public class Connect_4
                 for(i = 1; i <= 4 && xc < 7 && yc < 6; i++, xc++, yc++)
                 {
                     tra[i - 1] = grd[yc][xc];
-                    System.out.println(ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
+//                    System.out.println(ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
                 }
                 break;
 
@@ -274,7 +272,7 @@ public class Connect_4
                 for(i = 1; i <= 4 && yc < 6; i++, yc++)
                 {
                     tra[i - 1] = grd[yc][xc];
-                    System.out.println(ch + "   " + yc + " " + grd[yc][xc] + " " + pl);
+//                    System.out.println(ch + "   " + yc + " " + grd[yc][xc] + " " + pl);
                 }
                 break;
 
@@ -282,7 +280,7 @@ public class Connect_4
                 for(i = 1; i <= 4 && xc >= 0 && yc < 6; i++, xc--, yc++)
                 {
                     tra[i - 1] = grd[yc][xc];
-                    System.out.println(ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
+//                    System.out.println(ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
                 }
                 break;
 
@@ -290,7 +288,7 @@ public class Connect_4
                 for(i = 1; i <= 4 && xc >= 0; i++, xc--)
                 {
                     tra[i - 1] = grd[yc][xc];
-                    System.out.println(ch + " " + xc + "   " + grd[yc][xc] + " " + pl);
+//                    System.out.println(ch + " " + xc + "   " + grd[yc][xc] + " " + pl);
                 }
                 break;
 
@@ -298,7 +296,7 @@ public class Connect_4
                 for(i = 1; i <= 4 && xc >= 0 && yc >= 0; i++, xc--, yc--)
                 {
                     tra[i - 1] = grd[yc][xc];
-                    System.out.println(ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
+//                    System.out.println(ch + " " + xc + " " + yc + " " + grd[yc][xc] + " " + pl);
                 }
                 break;
 
