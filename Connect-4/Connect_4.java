@@ -13,10 +13,10 @@ public class Connect_4
                              {"[ ]","[ ]","[ ]","[ ]","[ ]","[ ]","[ ]"},
                              {"[ ]","[ ]","[ ]","[ ]","[ ]","[ ]","[ ]"},
                              {"[ ]","[ ]","[ ]","[ ]","[ ]","[ ]","[ ]"}};
-    
-                             
+                                 
     public static void main(String args[])
     {
+        clearScreen();
         System.out.println("\'X\' is player 1");
         System.out.println("\'O\' is player 2");
         System.out.println("To forfeit, enter 0");
@@ -37,11 +37,36 @@ public class Connect_4
 
             x = inc.charAt(0) - 65;
             enter();
-            display();
             win = check();
         }
         System.out.println("Congratulations, Player " + ((!play)?"1 ":"2 ") + " won the game");
 //        System.out.println("out of game");
+    }
+
+    public static void anim(int l)
+    {
+        String str = (play)?"[X]":"[O]";
+        int i;
+        for(i = 0 ; i < l ; i++)
+        {
+            if(i == 0)
+                grd[i][x] = str;
+            else
+            {
+                grd[i - 1][x] = "[ ]";
+                grd[i][x] = str;
+            }
+            try 
+            {
+                Thread.sleep(250); // Delay execution for 2 seconds (2000 milliseconds)
+            } 
+            catch (InterruptedException e) 
+            {
+                Thread.currentThread().interrupt(); // Restore interrupted status
+            }
+            clearScreen();
+            display();
+        }
     }
 
     public static void enter()
@@ -56,7 +81,7 @@ public class Connect_4
             System.out.println("No space left in column " + (char)(x + 65));
         else
         {
-            grd[l - 1][x] = (play)?"[X]":"[O]";
+            anim(l);
             play = !play;
             y = l - 1;
         }
@@ -118,7 +143,7 @@ public class Connect_4
             reset(tra);
             xc = x;
             yc = y;
-            System.out.println(xc + " " + yc);
+//          System.out.println(xc + " " + yc);
             switch(ch)
             {
                 case 1 :
@@ -221,7 +246,7 @@ public class Connect_4
                     yc+=(5 - len);
                     break;
             }
-            System.out.println(len + " " + xc + " " + yc);
+//          System.out.println(len + " " + xc + " " + yc);
             if(ch != 4)
                 dne = recheck(rch, xc, yc);
             else if(ch == 4)
@@ -307,5 +332,11 @@ public class Connect_4
             return Arrays.equals(che, tra);
         else
             return false;
+    }
+
+    public static void clearScreen() 
+    {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 }
