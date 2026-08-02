@@ -16,13 +16,12 @@ public class Connect_4
                                  
     public static void main(String args[])
     {
+        ani = s.nextBoolean();
         clearScreen();
         System.out.println("\'X\' is player 1");
         System.out.println("\'O\' is player 2");
         System.out.println("To forfeit, enter 0");
         String inc = "";
-
-        ani = s.nextBoolean();
         
         display();
         for( ; !win ; )
