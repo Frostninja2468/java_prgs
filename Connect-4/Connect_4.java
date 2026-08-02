@@ -2,7 +2,7 @@ import java.util.*;
 public class Connect_4
 {
     static final Scanner s = new Scanner(System.in);
-    static boolean play = true, win = false;
+    static boolean play = true, win = false, ani;
 //                 play = true => player 1  => X 
 //                 play = false => player 2 => O
     static int x, y;
@@ -20,8 +20,10 @@ public class Connect_4
         System.out.println("\'X\' is player 1");
         System.out.println("\'O\' is player 2");
         System.out.println("To forfeit, enter 0");
-        String inc;
+        String inc = "";
 
+        ani = s.nextBoolean();
+        
         display();
         for( ; !win ; )
         {
@@ -37,9 +39,15 @@ public class Connect_4
 
             x = inc.charAt(0) - 65;
             enter();
+            if(ani)
+            {
+                clearScreen();
+                display();
+            }
             win = check();
         }
-        System.out.println("Congratulations, Player " + ((!play)?"1 ":"2 ") + " won the game");
+        if(!inc.equals("0"))
+            System.out.println("Congratulations, Player " + ((!play)?"1 ":"2 ") + " won the game");
 //        System.out.println("out of game");
     }
 
@@ -81,7 +89,10 @@ public class Connect_4
             System.out.println("No space left in column " + (char)(x + 65));
         else
         {
-            anim(l);
+            if(ani)
+                grd[l - 1][x] = (play)?"[X]":"[O]";
+            else
+                anim(l);
             play = !play;
             y = l - 1;
         }
