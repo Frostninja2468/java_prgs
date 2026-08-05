@@ -133,7 +133,6 @@ class Number_Position
             {
                 boolean a5 = true, i5 = true, on = true;
                 temp_rnd = r.nextInt(v) + c;
-                System.out.println(temp_rnd);
                 
                 if(temp_rnd >= 1 && temp_rnd <= 4)
                     a5 = ta5 <= wa5;
@@ -156,7 +155,6 @@ class Number_Position
                 }
             }
             while(is_duplicate);
-            System.out.println("selected : " + temp_rnd);
             rnAr[i] = temp_rnd;
             if(rnAr[i] >=1 && rnAr[i] <= 4)
                 ta5++;
@@ -165,7 +163,6 @@ class Number_Position
             else
                 ton++;
         }
-            System.out.println(ta5 + " " + ti5 + " " + ton);
     }
         
     public static void rn_gen_not_4()//generates the random no. that is not 4 digits long to guess
