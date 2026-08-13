@@ -2,7 +2,7 @@ import java.util.*;
 public class Connect_4
 {
     static final Scanner s = new Scanner(System.in);
-    static boolean play = true, win = false, ani;
+    static boolean play = true, win = false, ani, emp = false;
 //                 play = true => player 1  => X 
 //                 play = false => player 2 => O
     static int x, y;
@@ -30,7 +30,7 @@ public class Connect_4
             if(inc.charAt(0) == '0' )
                 break;
 
-            if(inc.length() > 1 || ((int)inc.charAt(0)) > 72 || ((int)inc.charAt(0)) < 65)
+            if(inc.length() > 1 || ((int)inc.charAt(0)) > 71 || ((int)inc.charAt(0)) < 65)
             {
                 System.out.println("Invalid co-ordinate");
                 continue;
@@ -85,9 +85,10 @@ public class Connect_4
                 break;
         }
         if(l == 0)
-            System.out.println("No space left in column " + (char)(x + 65));
+            emp = true;
         else
         {
+            emp = false;
             if(ani)
                 grd[l - 1][x] = (play)?"[X]":"[O]";
             else
@@ -109,6 +110,8 @@ public class Connect_4
             System.out.println(i + 1);
             System.out.println("---------------------------");
         }
+        if(emp)
+            System.out.println("No space left in column " + (char)(x + 65));
     }
 
     public static void reset(String[] ar)
