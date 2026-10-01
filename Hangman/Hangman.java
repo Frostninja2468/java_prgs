@@ -168,7 +168,7 @@ public class Hangman
         
         String gu = " ";
         arprint(wrd);
-        for(; !gu.equals("0") && hang <= 6 && !win ; )
+        for(;hang <= 6 && !win ; )
         {
             System.out.print("Enter you guess: ");
             gu = s.next();
@@ -184,6 +184,8 @@ public class Hangman
                 System.out.println("Invalid Input");
                 continue;
             }
+            else if( gu.equals("0"))
+                break;
 
             if(gused.indexOf(gu) >= 0)
             {
