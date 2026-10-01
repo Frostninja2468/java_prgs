@@ -139,9 +139,10 @@ public class Hangman
     public static void addcor(char ch)
     {
         String str = word;
-        for(int p = 0; str.indexOf(ch) >= 0; str = str.substring(str.indexOf(ch) + 1))
+
+        for(int p = 0, i = 0; str.indexOf(ch) >= 0; str = str.substring(str.indexOf(ch) + 1), i++)
         {
-            p = p + str.indexOf(ch);
+            p = p + str.indexOf(ch) + ((i == 0)?0:1);
             wrd[p] = ch;
         }
     }
