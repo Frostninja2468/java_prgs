@@ -198,8 +198,9 @@ public class Hangman
             clearScreen();
             process(gu.charAt(0));
 
-            for(int i = 0 ; i < wrd.length && !win ; i++)
-                win = wrd[i] == '_';
+            win = true;
+            for(int i = 0 ; i < wrd.length && win ; i++)
+                win = wrd[i] != '_';
         }
 
         if(!win)
