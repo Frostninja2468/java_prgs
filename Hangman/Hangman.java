@@ -168,7 +168,7 @@ public class Hangman
         
         String gu = " ";
         arprint(wrd);
-        for(;hang <= 6 && !win ; )
+        for(;hang < 6 && !win ; )
         {
             System.out.print("Enter you guess: ");
             gu = s.next();
